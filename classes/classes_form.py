@@ -8,9 +8,9 @@ class Locators:
         "name_field" : "//input[@name = 'form_text_1']",
         "phone_field" : "//input[@name = 'form_text_2']",
         "email_field" : "//input[@name = 'form_email_3']",
-        "details_field" : "//textarea[@name = 'form_textarea_5'][1]",
-        "submit_btn" : "//button[@name='web_form_submit'][1]",
-        "site_field" : "//input[@name = 'form_text_14'][1]",
+        "details_field" : "//textarea[@name = 'form_textarea_5']",
+        "submit_btn" : "//button[@name='web_form_submit']",
+        "site_field" : "//input[@name = 'form_text_14']",
         "success_text" : "//h1[text() ='Спасибо за заявку!']",
     }
 
@@ -39,17 +39,17 @@ class SubmitApplication(BaseForm):
 
     # None for not required fields    
     def fill_form(self, name, email, phone=None, site=None, comments=None):
-        self.page.query_selector(Locators.submit_application_locators['name_field']).fill(name)
-        self.page.query_selector(Locators.submit_application_locators['email_field']).fill(email)
+        self.page.locator(Locators.submit_application_locators['name_field']).first.fill(name)
+        self.page.locator(Locators.submit_application_locators['email_field']).first.fill(email)
         if phone:
-            self.page.query_selector(Locators.submit_application_locators['phone_field']).fill(phone)
+            self.page.locator(Locators.submit_application_locators['phone_field']).first.fill(phone)
         if site:
-            self.page.query_selector(Locators.submit_application_locators['site_field']).fill(site)
+            self.page.locator(Locators.submit_application_locators['site_field']).first.fill(site)
         if comments:
-            self.page.query_selector(Locators.submit_application_locators['details_field']).fill(comments)
+            self.page.locator(Locators.submit_application_locators['details_field']).first.fill(comments)
 
     def submit_form(self):
-        self.page.query_selector(Locators.submit_application_locators['submit_btn']).click()
+        self.page.locator(Locators.submit_application_locators['submit_btn']).first.click()
 
     def check_success_message(self, expected_text):
         actual_text = self.page.locator(Locators.submit_application_locators['success_text']).inner_text()

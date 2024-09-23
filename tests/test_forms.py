@@ -30,7 +30,3 @@ def test_form_negative_scenarios(submit_application, negative_test_data, setup_t
     submit_application.fill_form(name, email, phone, site, comments)
     submit_application.submit_form()
     submit_application.check_url(setup_tests)
-
-
-    
-
