@@ -1,32 +1,46 @@
 import pytest
+from playwright.sync_api import Page
+from classes.classes_form import FormP100
+from classes.classes_form import Locators
 
 
 @pytest.fixture(params=[
     ('Заполнены все поля формы', 'Форма П10', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
-    ('Заполнены только обязательные поля формы','Форма П10', 'proverka@gmail.com', None, None, None)
+    ('Заполнены только обязательные поля формы', 'Форма П10', 'proverka@gmail.com', None, None, None)
 ])
 def positive_test_data(request):
     return request.param
 
-@pytest.mark.submit_application_positive_data
-def test_form_positive_scenarios(submit_application, positive_test_data):
+
+@pytest.mark.positive_tests
+def test_form_positive_scenarios(submit_application, positive_test_data, request):
     (test_case, name, email, phone, site, comments) = positive_test_data
     submit_application.fill_form(name, email, phone, site, comments)
     submit_application.submit_form()
     submit_application.check_success_message('Спасибо за заявку!')
 
+    request.node.test_case = test_case
+    request.node.form_name = name
+    request.node.form_page = submit_application.form_url
+
+
 @pytest.fixture(params=[
-    ('Отсуствует обяз. поле Имя', '', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
-    ('Отсуствует обяз. поле Почта', 'Форма П10', '', '+375(12)345-67-8', 'test.test', 'autotest'),
-    ('Все поля пустые', '', '', '', '', ''),
-    ('Невалидный формат почты', 'Форма П10', 'proverkagmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
+    ('Заполнены все поля формы', 'Форма П100', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
+    ('Заполнены только обязательные поля формы', 'Форма П100', 'proverka@gmail.com', None, None, None)
 ])
-def negative_test_data(request):
+def positive_test_data(request):
     return request.param
 
-@pytest.mark.submit_application_negative_data
-def test_form_negative_scenarios(submit_application, negative_test_data, setup_tests):
-    (test_case, name, email, phone, site, comments) = negative_test_data
-    submit_application.fill_form(name, email, phone, site, comments)
-    submit_application.submit_form()
-    submit_application.check_url(setup_tests)
+
+@pytest.mark.positive_tests_1
+def test_formP100(request, positive_test_data, page: Page):
+    (test_case, name, email, phone, site, comments) = positive_test_data
+    form_p100 = FormP100(page, Locators)
+    form_p100.open_page('https://manao-team.com/services/support/')
+    form_p100.fill_form(name, email, phone, site, comments)
+    form_p100.submit_form()
+    form_p100.check_success_message('Спасибо за заявку!')
+
+    request.node.test_case = test_case
+    request.node.form_name = name
+    request.node.form_page = form_p100.form_url
