@@ -67,13 +67,16 @@ class SubmitApplication(BaseForm):
         self.page.locator(Locators.submit_application_locators['submit_btn']).first.click()
 
     def check_success_message(self, expected_text):
-        actual_text = self.page.locator(Locators.submit_application_locators['success_text']).inner_text()
-        error_message = (
-            f"Текст успешного сообщения не совпадает:\n"
-            f"ожидается текст {expected_text}\n"
-            f"получен {actual_text}"
+        try:
+            actual_text = self.page.locator(Locators.submit_application_locators['success_text']).inner_text()
+            error_message = (
+                f"Текст успешного сообщения не совпадает:\n"
+                f"ожидается текст {expected_text}\n"
+                f"получен {actual_text}"
         )
-        assert actual_text == expected_text, error_message
+            assert actual_text == expected_text, error_message
+        except AssertionError as e:
+            raise AssertionError(f"Тест провален {str(e)}")
 
     def check_url(self, base_url):
         actual_url = self.page.url
