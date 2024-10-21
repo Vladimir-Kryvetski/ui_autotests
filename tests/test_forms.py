@@ -1,46 +1,32 @@
 import pytest
 from playwright.sync_api import Page
-from classes.classes_form import FormP100
+from classes.classes_form import *
 from classes.classes_form import Locators
 
 
-@pytest.fixture(params=[
-    ('Заполнены все поля формы', 'Форма П10', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
-    ('Заполнены только обязательные поля формы', 'Форма П10', 'proverka@gmail.com', None, None, None)
+@pytest.mark.parametrize("form_class, form_type, test_data, url" ,[
+    (FormP100, 'Форма п100', ('все поля заполнены', 'Форма П100', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support'),
+    (FormP100, 'Форма п100', ('только обязательные заполнены', 'Форма П100', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/'),
+    (FormP20, 'Форма п20', ('все поля заполнены', 'Форма П20', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support'),
+    (FormP20, 'Форма п20', ('только обязательные заполнены', 'Форма П20', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/'),
 ])
-def positive_test_data(request):
-    return request.param
 
 
-@pytest.mark.positive_tests
-def test_form_positive_scenarios(submit_application, positive_test_data, request):
-    (test_case, name, email, phone, site, comments) = positive_test_data
-    submit_application.fill_form(name, email, phone, site, comments)
-    submit_application.submit_form()
-    submit_application.check_success_message('Спасибо за заявку!')
-
+def test_forms(form_class, form_type, test_data, url, page: Page, request):
+    (test_case, name, email, phone, site, comments) = test_data
+    request.node.form_type = form_type
+    request.node.form_page = url
     request.node.test_case = test_case
-    request.node.form_name = name
-    request.node.form_page = submit_application.form_url
+    
+    #Инициализация формы в зависимости от выбранного класса
+    form = form_class(page, Locators)
+    #Переход на страницу формы
+    form.open_page(url)
+    #Заполненеие и отправка формы
+    form.fill_form(name, email, phone, site, comments)
+    form.submit_form()
+    form.check_success_message('Спасибо за заявку!')
 
-
-@pytest.fixture(params=[
-    ('Заполнены все поля формы', 'Форма П100', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),
-    ('Заполнены только обязательные поля формы', 'Форма П100', 'proverka@gmail.com', None, None, None)
-])
-def positive_test_data(request):
-    return request.param
-
-
-@pytest.mark.positive_tests_1
-def test_formP100(request, positive_test_data, page: Page):
-    (test_case, name, email, phone, site, comments) = positive_test_data
-    form_p100 = FormP100(page, Locators)
-    form_p100.open_page('https://manao-team.com/services/support/')
-    form_p100.fill_form(name, email, phone, site, comments)
-    form_p100.submit_form()
-    form_p100.check_success_message('Спасибо за заявку!')
-
-    request.node.test_case = test_case
-    request.node.form_name = name
-    request.node.form_page = form_p100.form_url
+    
+    
+    
