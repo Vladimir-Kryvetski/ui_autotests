@@ -1,49 +1,167 @@
+from typing import Dict, Optional
 from abc import ABC, abstractmethod
 from playwright.sync_api import Page, expect
 
 
 class Locators:
 
-    submit_application_locators = {
-        "name_field": "//input[@name = 'form_text_1']",
-        "phone_field": "//input[@name = 'form_text_2']",
-        "email_field": "//input[@name = 'form_email_3']",
-        "details_field": "//textarea[@name = 'form_textarea_5']",
-        "submit_btn": "//button[@name='web_form_submit']",
-        "site_field": "//input[@name = 'form_text_14']",
-        "success_text": "//h1[text() ='Спасибо за заявку!']",
+    forms = {
+        "p100":{
+            "btn":"//a[@data-form = 'Пакет 100']",
+            "fields":{
+                "name":"//input[@value='Пакет 100']/following::label[1]/input[@name = 'form_text_1']",
+                "phone":"//input[@value='Пакет 100']/following::label[1]/input[@name = 'form_text_1']",
+                "email":"//input[@value='Пакет 100']/following::label[3]/input[@name = 'form_email_3']",
+                "site":"//input[@value='Пакет 100']/following::label[4]/input[@name = 'form_text_14']",
+                "comments":"//input[@value='Пакет 100']/following::label[5]/textarea[@name = 'form_textarea_5']"
+            },
+            "submit_btn":"//input[@value='Пакет 100']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "p20":{
+            "btn":"//a[@data-form = 'Пакет 20']",
+            "fields":{
+                "name":"//input[@value='Пакет 20']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='Пакет 20']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='Пакет 20']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='Пакет 20']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='Пакет 20']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='Пакет 20']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+         "p50":{
+            "btn":"//a[@data-form = 'Пакет 50']",
+            "fields":{
+                "name":"//input[@value='Пакет 50']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='Пакет 50']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='Пакет 50']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='Пакет 50']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='Пакет 50']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='Пакет 50']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "p10":{
+            "btn":"//a[@data-form = 'Пакет 10']",
+            "fields":{
+                "name":"//input[@value='Пакет 10']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='Пакет 10']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='Пакет 10']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='Пакет 10']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='Пакет 10']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='Пакет 10']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "all_in":{
+            "btn":"//a[@data-form = 'ALL IN']",
+            "fields":{
+                "name":"//input[@value='ALL IN']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='ALL IN']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='ALL IN']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='ALL IN']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='ALL IN']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='ALL IN']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "front_back_seo":{
+            "btn":"//a[@data-form = 'FRONT + BACK + SEO']",
+            "fields":{
+                "name":"//input[@value='FRONT + BACK + SEO']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='FRONT + BACK + SEO']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='FRONT + BACK + SEO']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='FRONT + BACK + SEO']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='FRONT + BACK + SEO']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='FRONT + BACK + SEO']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "front_back_safe":{
+            "btn":"//a[@data-form = 'FRONT + BACK + SAFE']",
+            "fields":{
+                "name":"//input[@value='FRONT + BACK + SAFE']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='FRONT + BACK + SAFE']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='FRONT + BACK + SAFE']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='FRONT + BACK + SAFE']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='FRONT + BACK + SAFE']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='FRONT + BACK + SAFE']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+         "back_safe":{
+            "btn":"//a[@data-form = 'BACK + SAFE']",
+            "fields":{
+                "name":"//input[@value='BACK + SAFE']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@value='FBACK + SAFE']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@value='BACK + SAFE']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@value='BACK + SAFE']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@value='BACK + SAFE']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@value='BACK + SAFE']/following::div[2]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+         "forma_13":{
+            "fields":{
+                "name":"//input[@name = 'form_text_15']",
+                "phone": "//input[@name = 'form_text_16']",
+            },
+            "submit_btn":"//input[@name = 'form_text_16']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']"
+        },
+        "forma1":{
+            "btn":"//a[@href = '#order-development']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma2":{
+            "btn":"//a[@data-form = 'Заказать техническую поддержку сайта']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma3":{
+            "fields":{
+                "name":"//input[@name = 'form_text_15']",
+                "phone": "//input[@name = 'form_text_16']",
+            },
+        "submit_btn":"//input[@name = 'form_hidden_30']/following::label[2]/input[@name = 'form_text_16']/following::button[1]",
+        "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma4":{
+            "fields":{
+                "name":"//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[1]",
+                "phone": "//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[2]",
+                "email": "//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[3]",
+                "site": "//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[4]",
+                "comments": "//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[5]",
+            },
+            "submit_btn":"//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
     }
-
-    form_p100 = {
-        "form_btn": "//a[@data-form = 'Пакет 100']",
-        "form_name": "//input[@value='Пакет 100']/following::label[1]/input[@name = 'form_text_1']",
-        "form_phone": "//input[@value='Пакет 100']/following::label[2]/input[@name = 'form_text_2']",
-        "form_email": "//input[@value='Пакет 100']/following::label[3]/input[@name = 'form_email_3']",
-        "form_site": "//input[@value='Пакет 100']/following::label[4]/input[@name = 'form_text_14']",
-        "form_comments": "//input[@value='Пакет 100']/following::label[5]/textarea[@name = 'form_textarea_5']",
-        "form_sbt_btn": "//input[@value='Пакет 100']/following::div[2]/following::button[1]",
-        "success_text": "//h1[text() ='Спасибо за заявку!']",
-    }
-
-    form_p20 = {
-    "form_btn": "//a[@data-form = 'Пакет 20']",
-    "form_name": "//input[@value='Пакет 20']/following::label[1]/input[@name = 'form_text_1']",
-    "form_phone": "//input[@value='Пакет 20']/following::label[2]/input[@name = 'form_text_2']",
-    "form_email": "//input[@value='Пакет 20']/following::label[3]/input[@name = 'form_email_3']",
-    "form_site": "//input[@value='Пакет 20']/following::label[4]/input[@name = 'form_text_14']",
-    "form_comments": "//input[@value='Пакет 20']/following::label[5]/textarea[@name = 'form_textarea_5']",
-    "form_sbt_btn": "//input[@value='Пакет 20']/following::div[2]/following::button[1]",
-    "success_text": "//h1[text() ='Спасибо за заявку!']",
-}
-
 
 class BaseForm(ABC):
-    def __init__(self, page: Page, locators: Locators):
+    def __init__(self, page: Page, locators: Dict):
         self.page = page
         self.locators = locators
 
     @abstractmethod
-    def fill_form(self):
+    def fill_form(self, name:str, email:str, phone:Optional[str], site:Optional[str], comments:Optional[str]):
         pass
 
     @abstractmethod
@@ -54,69 +172,41 @@ class BaseForm(ABC):
     def check_success_message(self):
         pass
 
-class SubmitApplication(BaseForm):
+
+class GenericForm(BaseForm):
     def __init__(self, page, locators):
         super().__init__(page, locators)
-        self.form_url = ''
-
-    # None for not required fields    
-    def fill_form(self, name, email, phone=None, site=None, comments=None):
-        self.form_url = self.page.url
-        self.page.locator(Locators.submit_application_locators['name_field']).first.fill(name)
-        self.page.locator(Locators.submit_application_locators['email_field']).first.fill(email)
-        if phone:
-            self.page.locator(Locators.submit_application_locators['phone_field']).first.fill(phone)
-        if site:
-            self.page.locator(Locators.submit_application_locators['site_field']).first.fill(site)
-        if comments:
-            self.page.locator(Locators.submit_application_locators['details_field']).first.fill(comments)
-
-    def submit_form(self):
-        self.page.locator(Locators.submit_application_locators['submit_btn']).first.click()
-
-    def check_success_message(self, expected_text):
-        try:
-            actual_text = self.page.locator(Locators.submit_application_locators['success_text']).inner_text()
-            error_message = (
-                f"Текст успешного сообщения не совпадает:\n"
-                f"ожидается текст {expected_text}\n"
-                f"получен {actual_text}"
-        )
-            assert actual_text == expected_text, error_message
-        except AssertionError as e:
-            raise AssertionError(f"Тест провален {str(e)}")
-
-    def check_url(self, base_url):
-        actual_url = self.page.url
-        error_text = f"URL изменился стал {actual_url} , а должен быть {base_url}"
-        expect((self.page), error_text).to_have_url(base_url)
-
-
-class FormP100(BaseForm):
-    def __init__(self, page, locators):
-        super().__init__(page, locators)
+        #cохраняем урл для вставки в отчет по тестированию
         self.form_url = ''
 
     def open_page(self, url):
         self.page.goto(url)
 
-    def fill_form(self, name, email, phone=None, site=None, comments=None):
+    def fill_form(self, name:str, email:Optional[str], phone:Optional[str], site:Optional[str], comments:Optional[str]):
         self.form_url = self.page.url
-        self.page.locator(Locators.form_p100['form_btn']).click()
-        self.page.locator(Locators.form_p100['form_name']).fill(name)
-        self.page.locator(Locators.form_p100['form_email']).fill(email)
-        if phone:
-            self.page.locator(Locators.form_p100['form_phone']).fill(phone)
-        if site:
-            self.page.locator(Locators.form_p100['form_site']).fill(site)
-        if comments:
-            self.page.locator(Locators.form_p100['form_comments']).fill(comments)
+
+        if 'btn' in self.locators and self.page.locator(self.locators['btn']).is_visible():
+            self.page.locator(self.locators['btn']).click()
+        if name is not None:
+            self.page.locator(self.locators['fields']['name']).fill(name)
+        if 'email' in self.locators['fields'] and self.page.locator(self.locators['fields']['email']).is_visible():
+            if email is not None:
+                self.page.locator(self.locators['fields']['email']).fill(email)
+        if 'phone' in self.locators['fields'] and self.page.locator(self.locators['fields']['phone']).is_visible():
+            if phone is not None:
+                self.page.locator(self.locators['fields']['phone']).fill(phone)
+        if 'site' in self.locators['fields'] and  self.page.locator(self.locators['fields']['site']).is_visible():
+            if site is not None:
+                self.page.locator(self.locators['fields']['site']).fill(site)
+        if 'comments' in self.locators['fields'] and self.page.locator(self.locators['fields']['comments']).is_visible():
+            if comments is not None:
+                self.page.locator(self.locators['fields']['comments']).fill(comments)
 
     def submit_form(self):
-        self.page.locator(Locators.form_p100['form_sbt_btn']).click()
+        self.page.locator(self.locators['submit_btn']).click()
 
     def check_success_message(self, expected_text):
-        actual_text = self.page.locator(Locators.form_p100['success_text']).inner_text()
+        actual_text = self.page.locator(self.locators['success_text']).inner_text()
         error_message = (
             f"Текст успешного сообщения не совпадает:\n"
             f"ожидается текст {expected_text}\n"
@@ -125,37 +215,28 @@ class FormP100(BaseForm):
         assert actual_text == expected_text, error_message
 
 
-class FormP20(BaseForm):
-    def __init__(self, page, locators):
-        super().__init__(page, locators)
-        self.form_url = ''
 
-    def open_page(self, url):
-        self.page.goto(url)
 
-    def fill_form(self, name, email, phone=None, site=None, comments=None):
-        self.form_url = self.page.url
-        self.page.locator(Locators.form_p20['form_btn']).click()
-        self.page.locator(Locators.form_p20['form_name']).fill(name)
-        self.page.locator(Locators.form_p20['form_email']).fill(email)
-        if phone:
-            self.page.locator(Locators.form_p20['form_phone']).fill(phone)
-        if site:
-            self.page.locator(Locators.form_p20['form_site']).fill(site)
-        if comments:
-            self.page.locator(Locators.form_p20['form_comments']).fill(comments)
 
-    def submit_form(self):
-        self.page.locator(Locators.form_p20['form_sbt_btn']).click()
 
-    def check_success_message(self, expected_text):
-        actual_text = self.page.locator(Locators.form_p20['success_text']).inner_text()
-        error_message = (
-            f"Текст успешного сообщения не совпадает:\n"
-            f"ожидается текст {expected_text}\n"
-            f"получен {actual_text}"
-        )
-        assert actual_text == expected_text, error_message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
