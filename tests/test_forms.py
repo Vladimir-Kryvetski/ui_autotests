@@ -28,6 +28,7 @@ from classes.classes_form import Locators, GenericForm
     ('forma3', ('все поля заполнены', 'Форма3', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support/'),
     ('forma4', ('только обязательные заполнены', 'Форма4', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/'),
     ('forma4', ('все поля заполнены', 'Форма4', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/'),
+    ('forma5', ('все поля заполнены', 'Форма5', 'proverka@gmail.com', None, None, None),'https://manao-team.com/publications/rasskazyvaem-pochemu-sayt-ne-prinosit-pribyl-i-darim-chek-list/'),
 ])
 
 
@@ -36,19 +37,22 @@ def test_forms(form_type, test_data, url, page: Page, request):
     request.node.form_type = form_type
     request.node.form_page = url
     request.node.test_case = test_case
-    
+
     #Определение локаторов в зависимости от типы формы
     locators = Locators.forms[form_type]
 
     #Создание формы
     form = GenericForm(page, locators)
 
-    form.open_page(url)
-    form.fill_form(name, email, phone, site, comments)
-    page.screenshot(path='1.png')
-    form.submit_form()
-    form.check_success_message('Спасибо за заявку!')
-
+    try:
+        form.open_page(url)
+        form.fill_form(name, email, phone, site, comments)
+        form.submit_form()
+        form.check_success_message('Спасибо за заявку!')
+    except Exception as e:
+        # пользовательское сообщение и завершаем тест
+        request.node.add_error_message(str(e))
+        pytest.fail(str(e), pytrace=False)
     
     
     

@@ -1,6 +1,7 @@
 from typing import Dict, Optional
 from abc import ABC, abstractmethod
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, TimeoutError, ElementHandle
+import pytest
 
 
 class Locators:
@@ -153,6 +154,14 @@ class Locators:
             "submit_btn":"//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::button[1]",
             "success_text":"//h1[text() ='Спасибо за заявку!']",
         },
+        "forma5":{
+            "fields":{
+                "name":"//input[@name = 'form_text_24']",
+                "email": "//input[@name = 'form_email_25']",
+            },
+            "submit_btn":"//input[@name = 'form_email_25']/following::button[1]",
+            "success_text":"//h2[text()='Всё отправили на вашу почту, можете проверять!']",
+        },
     }
 
 class BaseForm(ABC):
@@ -182,26 +191,32 @@ class GenericForm(BaseForm):
     def open_page(self, url):
         self.page.goto(url)
 
-    def fill_form(self, name:str, email:Optional[str], phone:Optional[str], site:Optional[str], comments:Optional[str]):
+    def fill_form(self, name: str, email: Optional[str], phone: Optional[str], site: Optional[str], comments: Optional[str]):
         self.form_url = self.page.url
-
-        if 'btn' in self.locators and self.page.locator(self.locators['btn']).is_visible():
-            self.page.locator(self.locators['btn']).click()
-        if name is not None:
-            self.page.locator(self.locators['fields']['name']).fill(name)
-        if 'email' in self.locators['fields'] and self.page.locator(self.locators['fields']['email']).is_visible():
-            if email is not None:
-                self.page.locator(self.locators['fields']['email']).fill(email)
-        if 'phone' in self.locators['fields'] and self.page.locator(self.locators['fields']['phone']).is_visible():
-            if phone is not None:
-                self.page.locator(self.locators['fields']['phone']).fill(phone)
-        if 'site' in self.locators['fields'] and  self.page.locator(self.locators['fields']['site']).is_visible():
-            if site is not None:
-                self.page.locator(self.locators['fields']['site']).fill(site)
-        if 'comments' in self.locators['fields'] and self.page.locator(self.locators['fields']['comments']).is_visible():
-            if comments is not None:
-                self.page.locator(self.locators['fields']['comments']).fill(comments)
-
+        try:
+            if 'btn' in self.locators and self.page.locator(self.locators['btn']).is_visible():
+                self.page.locator(self.locators['btn']).click()
+            if name is not None:
+                self.page.locator(self.locators['fields']['name']).fill(name)
+            if 'email' in self.locators['fields'] and self.page.locator(self.locators['fields']['email']).is_visible():
+                if email is not None:
+                    self.page.locator(self.locators['fields']['email']).fill(email)
+            if 'phone' in self.locators['fields'] and self.page.locator(self.locators['fields']['phone']).is_visible():
+                if phone is not None:
+                    self.page.locator(self.locators['fields']['phone']).fill(phone)
+            if 'site' in self.locators['fields'] and self.page.locator(self.locators['fields']['site']).is_visible():
+                if site is not None:
+                    self.page.locator(self.locators['fields']['site']).fill(site)
+            if 'comments' in self.locators['fields'] and self.page.locator(self.locators['fields']['comments']).is_visible():
+                if comments is not None:
+                    self.page.locator(self.locators['fields']['comments']).fill(comments)       
+        except TimeoutError as e:
+            error_msg = f"Превышено время ожидания {e}"
+            self.page.context._request.node.add_error_message(error_msg)
+        except ElementHandle as e: 
+            error_msg = f"Элемент не найден {e}"
+            self.page.context._request.node.add_error_message(error_msg)
+        
     def submit_form(self):
         self.page.locator(self.locators['submit_btn']).click()
 
