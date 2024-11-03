@@ -162,6 +162,280 @@ class Locators:
             "submit_btn":"//input[@name = 'form_email_25']/following::button[1]",
             "success_text":"//h2[text()='Всё отправили на вашу почту, можете проверять!']",
         },
+        "forma6":{
+            "btn":"//a[@href = '#order-development']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma7":{
+            "btn":"//h3[text()='Заказать аудит сайта']/following::a[@href = '#order-development'][1]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma8":{
+            "fields":{
+                "name":"//input[@name = 'form_text_20']",
+                "phone": "//input[@name = 'form_text_21']",
+                "email": "//input[@name = 'form_email_22']",
+                "comments": "//textarea[@name = 'form_textarea_23']",
+            },
+            "submit_btn":"//h2[text()='Оставить заявку на консультацию']/following::button[@name = 'web_form_submit'][1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_internet_shop":{
+            "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][1]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_corporate_site":{
+            "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][2]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_site_gotovoe_reshenie":{
+            "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][3]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_landing":{
+            "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][2]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_catalog":{
+            "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][5]",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_9":{
+            "btn":"//a[text() = 'Приобрести лицензию']",
+            "fields":{
+                "name":"//input[@name = 'form_text_17']",
+                "phone": "//input[@name = 'form_text_18']",
+            },
+            "submit_btn":"//button[text() = 'Оставить заявку']",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_10":{
+            "btn":"//a[text() = 'оставить заявку']",
+            "fields":{
+                "name":"//input[@name = 'form_text_17']",
+                "phone": "//input[@name = 'form_text_18']",
+            },
+            "submit_btn":"//button[text() = 'Оставить заявку']",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_pod_kluch":{
+            "btn":"//a[@data-form = 'Интернет-магазин с нуля под ключ']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_gotovoe_reshenie":{
+            "btn":"//a[@data-form = 'Интернет-магазин на готовом решении']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_korporotive_site_3.0":{
+            "btn":"//a[@data-form = 'Корпоративный сайт 3.0']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+        "forma_lite_shop":{
+            "btn":"//a[@data-form = 'Лайтшоп']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_intec_prom":{
+            "btn":"//a[@data-form = 'Корпоративный сайт с интернет-магазином']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_intec_universe":{
+            "btn":"//a[@data-form = 'Интернет-магазин с конструктором дизайна']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_focus":{
+            "btn":"//a[@data-form = 'Корпоративный сайт + интернет-магазин']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_s_nulya":{
+            "btn":"//a[@data-form = 'Корпоративный сайт «под ключ» с нуля']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_na_gotovom":{
+            "btn":"//a[@data-form = 'Корпоративный сайт на готовом решении']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_11":{
+            "btn":"//a[text() = 'оставить заявку']",
+            "fields":{
+                "name":"//input[@name = 'form_text_17']",
+                "phone": "//input[@name = 'form_text_18']",
+            },
+            "submit_btn":"//button[text()='Оставить заявку']",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_12":{
+            "btn":"//a[@data-form = 'Мы обязательно учитываем бизнес‑модель клиента в создании дизайна']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_korporotive_site":{
+            "btn":"//a[@data-form = 'Корпоративный сайт']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
+
+        "forma_internet_magaz":{
+            "btn":"//a[@data-form = 'Интернет-магазин']",
+            "fields":{
+                "name":"//input[@name = 'form_hidden_27']/following::label[1]/input[@name = 'form_text_1']",
+                "phone": "//input[@name = 'form_hidden_27']/following::label[2]/input[@name = 'form_text_2']",
+                "email": "//input[@name = 'form_hidden_27']/following::label[3]/input[@name = 'form_email_3']",
+                "site": "//input[@name = 'form_hidden_27']/following::label[4]/input[@name = 'form_text_14']",
+                "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
+            },
+            "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
+            "success_text":"//h1[text() ='Спасибо за заявку!']",
+        },
     }
 
 class BaseForm(ABC):
@@ -190,6 +464,16 @@ class GenericForm(BaseForm):
 
     def open_page(self, url):
         self.page.goto(url)
+
+    def close_modal_if_present(self):
+        try:
+            model_close_btn = self.page.locator('.fancybox-close-small')
+            if model_close_btn.is_visible:
+                model_close_btn.click()
+        except TimeoutError as e:
+             print(f"Модальное окно не появилось: {e}")
+        except ElementHandle as e:
+            print(f"Ошибка при работе с элементом модального окна {e}")
 
     def fill_form(self, name: str, email: Optional[str], phone: Optional[str], site: Optional[str], comments: Optional[str]):
         self.form_url = self.page.url
@@ -220,14 +504,14 @@ class GenericForm(BaseForm):
     def submit_form(self):
         self.page.locator(self.locators['submit_btn']).click()
 
-    def check_success_message(self, expected_text):
+    def check_success_message(self, expected_texts):
         actual_text = self.page.locator(self.locators['success_text']).inner_text()
         error_message = (
             f"Текст успешного сообщения не совпадает:\n"
-            f"ожидается текст {expected_text}\n"
+            f"ожидается текст {expected_texts}\n"
             f"получен {actual_text}"
         )
-        assert actual_text == expected_text, error_message
+        assert actual_text in expected_texts, error_message
 
 
 
