@@ -11,7 +11,7 @@ class Locators:
             "btn":"//a[@data-form = 'Пакет 100']",
             "fields":{
                 "name":"//input[@value='Пакет 100']/following::label[1]/input[@name = 'form_text_1']",
-                "phone":"//input[@value='Пакет 100']/following::label[1]/input[@name = 'form_text_1']",
+                "phone":"//input[@value='Пакет 100']/following::label[2]/input[@name = 'form_text_2']",
                 "email":"//input[@value='Пакет 100']/following::label[3]/input[@name = 'form_email_3']",
                 "site":"//input[@value='Пакет 100']/following::label[4]/input[@name = 'form_text_14']",
                 "comments":"//input[@value='Пакет 100']/following::label[5]/textarea[@name = 'form_textarea_5']"
