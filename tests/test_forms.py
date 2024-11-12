@@ -5,7 +5,7 @@ from classes.classes_form import Locators, GenericForm
 
 @pytest.mark.parametrize("form_type, test_data, url, expected_texts", [
     ('p100', ('все поля заполнены', 'Форма П100', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
-    #('p100', ('только обязательные заполнены', 'Форма П100', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
+    ('p100', ('только обязательные заполнены', 'Форма П100', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
     ('p20', ('все поля заполнены', 'Форма П20', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
     ('p20', ('только обязательные заполнены', 'Форма П20', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
     ('p50', ('все поля заполнены', 'Форма П50', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
