@@ -55,6 +55,18 @@ pytest -m submit_application_positive_data
 
 Отчеты по тестам можно будет просмотреть в браузере
 
+8. Запуск тестов из докер-контейнера
+
+Установка докера [Get Docker | Docker Docs](https://docs.docker.com/get-started/get-docker/)
+
+Команда для создания образа:
+	docker build -t PythonImage:3.10
+	где PythonImage:3.10 название образа
+
+Команда для создания контейнера:
+	docker run -d -p 3000:3000 --name uiTests PythonImage:3.10
+	где uiTests - название контейнера , PythonImage:3.10 - базовый образ
+
 **Обновеление автотестов**
 
 1. Перейти в каталог с проектом
