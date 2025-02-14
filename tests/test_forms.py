@@ -1,6 +1,9 @@
 import pytest
+import os
+from dotenv import load_dotenv
 from playwright.sync_api import Page
-from classes.classes_form import Locators, GenericForm
+from classes.classes_form import Locators, GenericForm, Bitrix24
+import time
 
 
 @pytest.mark.parametrize("form_type, test_data, url, expected_texts", [
@@ -88,12 +91,13 @@ from classes.classes_form import Locators, GenericForm
     ['Спасибо за заявку!']),
 ])
 
-
-def test_forms(form_type, test_data, url, page: Page, request,  expected_texts):
+@pytest.mark.webforms
+def test_webforms(form_type, test_data, url, page: Page, request,  expected_texts):
     (test_case, name, email, phone, site, comments) = test_data
     request.node.form_type = form_type
     request.node.form_page = url
     request.node.test_case = test_case
+    request.node.test_data = test_data
 
     #Определение локаторов в зависимости от типы формы
     locators = Locators.forms[form_type]
@@ -106,14 +110,54 @@ def test_forms(form_type, test_data, url, page: Page, request,  expected_texts):
         form.close_modal_if_present()
         form.fill_form(name, email, phone, site, comments)
         form.submit_form()
-        page.screenshot(path="screenshot.png")
         form.check_success_message(expected_texts)
+
     except Exception as e:
-        # пользовательское сообщение и завершаем тест
         request.node.add_error_message(str(e))
         pytest.fail(str(e), pytrace=False)
+
+@pytest.mark.integration
+def test_check_all_leads(webhook_url, request):
+    load_dotenv()
+    time.sleep(5)
+
+    try:
+        if not webhook_url:
+            raise Exception('Webhook url is not found in env variables')
+    
+        bitrix = Bitrix24(webhook_url)
+
+        bitrix.get_leads()
+        test_data = request.node.test_data
+        lead_created = bitrix.check_leads(test_data[1])
+        request.node.check_leads_result = 'PASSED' if lead_created else 'FAILED'
+
+        if not lead_created:
+            raise Exception('Lead is not created in Bitrix24')
+
+    except Exception as e:
+        request.node.check_leads_result = 'FAILED'
+    
+
+
     
     
     
+
+    
+    
+
+    
+    
+ 
+
+
+
+
+
+    
+
+
+
     
     
