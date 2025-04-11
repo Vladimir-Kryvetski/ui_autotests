@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 from abc import ABC, abstractmethod
-from playwright.sync_api import Page, TimeoutError, ElementHandle
-import pytest
+from playwright.sync_api import Page, TimeoutError
+
 
 
 class Locators:
@@ -17,7 +17,7 @@ class Locators:
                 "comments":"//input[@value='Пакет 100']/following::label[5]/textarea[@name = 'form_textarea_5']"
             },
             "submit_btn":"//input[@value='Пакет 100']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "p20":{
             "btn":"//a[@data-form = 'Пакет 20']",
@@ -29,7 +29,7 @@ class Locators:
                 "comments": "//input[@value='Пакет 20']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='Пакет 20']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
          "p50":{
             "btn":"//a[@data-form = 'Пакет 50']",
@@ -41,7 +41,7 @@ class Locators:
                 "comments": "//input[@value='Пакет 50']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='Пакет 50']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "p10":{
             "btn":"//a[@data-form = 'Пакет 10']",
@@ -53,7 +53,7 @@ class Locators:
                 "comments": "//input[@value='Пакет 10']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='Пакет 10']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "all_in":{
             "btn":"//a[@data-form = 'ALL IN']",
@@ -65,7 +65,7 @@ class Locators:
                 "comments": "//input[@value='ALL IN']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='ALL IN']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "front_back_seo":{
             "btn":"//a[@data-form = 'FRONT + BACK + SEO']",
@@ -77,7 +77,7 @@ class Locators:
                 "comments": "//input[@value='FRONT + BACK + SEO']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='FRONT + BACK + SEO']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "front_back_safe":{
             "btn":"//a[@data-form = 'FRONT + BACK + SAFE']",
@@ -89,7 +89,7 @@ class Locators:
                 "comments": "//input[@value='FRONT + BACK + SAFE']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='FRONT + BACK + SAFE']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
          "back_safe":{
             "btn":"//a[@data-form = 'BACK + SAFE']",
@@ -101,7 +101,7 @@ class Locators:
                 "comments": "//input[@value='BACK + SAFE']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@value='BACK + SAFE']/following::div[2]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
          "forma_13":{
             "fields":{
@@ -109,7 +109,7 @@ class Locators:
                 "phone": "//input[@name = 'form_text_16']",
             },
             "submit_btn":"//input[@name = 'form_text_16']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']"
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma1":{
             "btn":"//a[@href = '#order-development']",
@@ -121,7 +121,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma2":{
             "btn":"//a[@data-form = 'Заказать техническую поддержку сайта']",
@@ -133,7 +133,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma3":{
             "fields":{
@@ -141,7 +141,7 @@ class Locators:
                 "phone": "//input[@name = 'form_text_16']",
             },
         "submit_btn":"//input[@name = 'form_hidden_30']/following::label[2]/input[@name = 'form_text_16']/following::button[1]",
-        "success_text":"//h1[text() ='Спасибо за заявку!']",
+        "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma4":{
             "fields":{
@@ -152,7 +152,7 @@ class Locators:
                 "comments": "//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::input[5]",
             },
             "submit_btn":"//input[contains(@value, 'YToyOntzOjE4OiJDT01QT05FTlRfVEVNUExBVEUiO3M6O')]/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma5":{
             "fields":{
@@ -160,7 +160,7 @@ class Locators:
                 "email": "//input[@name = 'form_email_25']",
             },
             "submit_btn":"//input[@name = 'form_email_25']/following::button[1]",
-            "success_text":"//h2[text()='Всё отправили на вашу почту, можете проверять!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma6":{
             "btn":"//a[@href = '#order-development']",
@@ -172,7 +172,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma7":{
             "btn":"//h3[text()='Заказать аудит сайта']/following::a[@href = '#order-development'][1]",
@@ -184,7 +184,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma8":{
             "fields":{
@@ -194,7 +194,7 @@ class Locators:
                 "comments": "//textarea[@name = 'form_textarea_23']",
             },
             "submit_btn":"//h2[text()='Оставить заявку на консультацию']/following::button[@name = 'web_form_submit'][1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_internet_shop":{
             "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][1]",
@@ -206,7 +206,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_corporate_site":{
             "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][2]",
@@ -218,7 +218,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_site_gotovoe_reshenie":{
             "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][3]",
@@ -230,7 +230,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_landing":{
             "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][2]",
@@ -242,7 +242,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_catalog":{
             "btn":"//h3[text() ='Интернет-магазин']/following::a[@href = '#order-development'][5]",
@@ -254,7 +254,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_9":{
             "btn":"//a[text() = 'Приобрести лицензию']",
@@ -263,7 +263,7 @@ class Locators:
                 "phone": "//input[@name = 'form_text_18']",
             },
             "submit_btn":"//button[text() = 'Оставить заявку']",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_10":{
             "btn":"//a[text() = 'оставить заявку']",
@@ -272,7 +272,7 @@ class Locators:
                 "phone": "//input[@name = 'form_text_18']",
             },
             "submit_btn":"//button[text() = 'Оставить заявку']",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_pod_kluch":{
             "btn":"//a[@data-form = 'Интернет-магазин с нуля под ключ']",
@@ -284,7 +284,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_gotovoe_reshenie":{
             "btn":"//a[@data-form = 'Интернет-магазин на готовом решении']",
@@ -296,7 +296,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_korporotive_site_3.0":{
             "btn":"//a[@data-form = 'Корпоративный сайт 3.0']",
@@ -308,7 +308,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
         "forma_lite_shop":{
             "btn":"//a[@data-form = 'Лайтшоп']",
@@ -320,7 +320,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_intec_prom":{
@@ -333,7 +333,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_intec_universe":{
@@ -346,7 +346,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_focus":{
@@ -359,7 +359,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_s_nulya":{
@@ -372,7 +372,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_na_gotovom":{
@@ -385,7 +385,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_11":{
@@ -395,7 +395,7 @@ class Locators:
                 "phone": "//input[@name = 'form_text_18']",
             },
             "submit_btn":"//button[text()='Оставить заявку']",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_12":{
@@ -408,7 +408,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_korporotive_site":{
@@ -421,7 +421,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
 
         "forma_internet_magaz":{
@@ -434,7 +434,7 @@ class Locators:
                 "comments": "//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']",
             },
             "submit_btn":"//input[@name = 'form_hidden_27']/following::label[5]/textarea[@name = 'form_textarea_5']/following::button[1]",
-            "success_text":"//h1[text() ='Спасибо за заявку!']",
+            "success_text":"//div[@class='h2 mb-30' and text()='Спасибо за заявку!']",
         },
     }
 
@@ -468,11 +468,11 @@ class GenericForm(BaseForm):
     def close_modal_if_present(self):
         try:
             model_close_btn = self.page.locator('.fancybox-close-small')
-            if model_close_btn.is_visible:
+            if model_close_btn.is_visible():
                 model_close_btn.click()
         except TimeoutError as e:
              print(f"Модальное окно не появилось: {e}")
-        except ElementHandle as e:
+        except Exception as e:
             print(f"Ошибка при работе с элементом модального окна {e}")
 
     def fill_form(self, name: str, email: Optional[str], phone: Optional[str], site: Optional[str], comments: Optional[str]):
@@ -497,21 +497,30 @@ class GenericForm(BaseForm):
         except TimeoutError as e:
             error_msg = f"Превышено время ожидания {e}"
             self.page.context._request.node.add_error_message(error_msg)
-        except ElementHandle as e: 
+        except Exception as e: 
             error_msg = f"Элемент не найден {e}"
             self.page.context._request.node.add_error_message(error_msg)
         
     def submit_form(self):
         self.page.locator(self.locators['submit_btn']).click()
 
-    def check_success_message(self, expected_texts):
-        actual_text = self.page.locator(self.locators['success_text']).inner_text()
-        error_message = (
-            f"Текст успешного сообщения не совпадает:\n"
-            f"ожидается текст {expected_texts}\n"
-            f"получен {actual_text}"
-        )
-        assert actual_text in expected_texts, error_message
+    def check_success_message(self, expected_texts, request):
+        try:
+            actual_text = self.page.locator(self.locators['success_text']).inner_text()
+            error_message = (
+                f"Текст успешного сообщения не совпадает:\n"
+                f"ожидается текст {expected_texts}\n"
+                f"получен {actual_text}"
+            )
+            assert actual_text in expected_texts, error_message
+        except TimeoutError as e:
+            error_msg = f"Превышено время ожидания появления элемента на странице: элемент не найден"
+            request.node.add_error_message(error_msg)
+            raise # Чтобы вызвать исключение без дублирования вывода ошибки
+        except Exception as e:
+            error_msg = f"Общая ошибка: {e}"
+            request.node.add_error_message(error_msg)
+            raise # Чтобы вызвать исключение без дублирования вывода ошибки
 
 
 

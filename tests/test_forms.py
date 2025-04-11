@@ -5,9 +5,9 @@ from classes.classes_form import Locators, GenericForm
 
 @pytest.mark.parametrize("form_type, test_data, url, expected_texts", [
     ('p100', ('все поля заполнены', 'Форма П100', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
-    #('p100', ('только обязательные заполнены', 'Форма П100', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
+    ('p100', ('только обязательные заполнены', 'Форма П100', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
     ('p20', ('все поля заполнены', 'Форма П20', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
-    ('p20', ('только обязательные заполнены', 'Форма П20', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
+    #('p20', ('только обязательные заполнены', 'Форма П20', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
     ('p50', ('все поля заполнены', 'Форма П50', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
     ('p50', ('только обязательные заполнены', 'Форма П50', 'proverka@gmail.com', None, None, None), 'https://manao-team.com/services/support/', ['Спасибо за заявку!']),
     ('p10', ('все поля заполнены', 'Форма П10', 'proverka@gmail.com', '+375(12)345-67-8', 'test.test', 'autotest'),'https://manao-team.com/services/support', ['Спасибо за заявку!']),
@@ -100,18 +100,12 @@ def test_forms(form_type, test_data, url, page: Page, request,  expected_texts):
 
     #Создание формы
     form = GenericForm(page, locators)
-
-    try:
-        form.open_page(url)
-        form.close_modal_if_present()
-        form.fill_form(name, email, phone, site, comments)
-        form.submit_form()
-        page.screenshot(path="screenshot.png")
-        form.check_success_message(expected_texts)
-    except Exception as e:
-        # пользовательское сообщение и завершаем тест
-        request.node.add_error_message(str(e))
-        pytest.fail(str(e), pytrace=False)
+    form.open_page(url)
+    form.close_modal_if_present()
+    form.fill_form(name, email, phone, site, comments)
+    form.submit_form()
+    form.check_success_message(expected_texts, request)
+    
     
     
     
